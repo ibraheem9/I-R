@@ -854,6 +854,47 @@ body.invitation-open .mobile-wrapper {
   flex: none;
 }
 
+/* بطاقة تفاصيل الموقع والعنوان */
+.location-section {
+  text-align: center;
+  margin: 6px auto 14px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 18px rgba(217, 119, 6, 0.08), 0 0 14px rgba(254, 240, 138, 0.2);
+  max-width: 360px;
+  width: 100%;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-modern);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--c-gold-solid);
+  margin-bottom: 5px;
+}
+.location-badge svg {
+  width: 16px;
+  height: 16px;
+  color: #ef4444;
+  flex: none;
+}
+.location-address {
+  font-family: var(--font-modern);
+  font-size: clamp(0.86rem, 3.2vw, 0.98rem);
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.btn-map  { background: linear-gradient(135deg, #059669 0%, #10b981 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); }
 .btn-cal  { background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); }
 .btn-share{ background: linear-gradient(135deg, #db2777 0%, #f472b6 100%); box-shadow: 0 4px 15px rgba(244, 114, 182, 0.35); }
 
@@ -1128,8 +1169,30 @@ body.invitation-open .mobile-wrapper {
         </p>
       </div>
 
-      <!-- أزرار الإجراءات (تم حذف زر واتساب بناء على طلب المستخدم) -->
+      <!-- تفاصيل العنوان والموقع -->
+      <div class="location-section">
+        <div class="location-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>الموقع والعنوان</span>
+        </div>
+        <p class="location-address">الوسطى، قرية المصدر، شارع صلاح الدين، خلف محطة بهلول</p>
+      </div>
+
+      <!-- أزرار الإجراءات -->
       <div class="action-buttons-list">
+
+        <!-- رابط الموقع في خرائط Google -->
+        <a class="btn-action-mobile btn-map" href="https://www.google.com/maps/search/?api=1&amp;query=%D8%A7%D9%84%D9%88%D8%B3%D8%B7%D9%89%D8%8C%20%D9%82%D8%B1%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%D8%8C%20%D8%B4%D8%A7%D8%B1%D8%B9%20%D8%B5%D9%84%D8%A7%D8%AD%20%D8%A7%D9%84%D8%AF%D9%8A%D9%86%D8%8C%20%D8%AE%D9%84%D9%81%20%D9%85%D8%AD%D8%B7%D8%A9%20%D8%A8%D9%87%D9%84%D9%88%D9%84" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+            <line x1="9" y1="3" x2="9" y2="18"/>
+            <line x1="15" y1="6" x2="15" y2="21"/>
+          </svg>
+          <span>موقع الحفل على الخريطة</span>
+        </a>
 
         <!-- حفظ الموعد في التقويم -->
         <button class="btn-action-mobile btn-cal" id="saveCalendarBtn">
@@ -1458,7 +1521,7 @@ body.invitation-open .mobile-wrapper {
       'DTEND:20261127T180000Z',
       'SUMMARY:عقد قران المهندس إبراهيم والمهندسة رزان 💍❤️',
       'DESCRIPTION:يتشرف الدكتور عمر عبد الهادي والسيد/ زهدي كمال أبو عودة بدعوتكم لحضور عقد قران نجليهما المهندس إبراهيم والمهندسة رزان. بارك الله لهما وبارك عليهما وجمع بينهما في خير.',
-      'LOCATION:عقد قران إبراهيم & رزان',
+      'LOCATION:الوسطى، قرية المصدر، شارع صلاح الدين، خلف محطة بهلول',
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
@@ -1478,7 +1541,7 @@ body.invitation-open .mobile-wrapper {
   document.getElementById('shareCardBtn').addEventListener('click', () => {
     const shareData = {
       title: 'عقد قران | المهندس إبراهيم & المهندسة رزان',
-      text: 'بسم الله الرحمن الرحيم ✨ نتشرف بدعوتكم لحضور عقد قران نجليهما: المهندس إبراهيم ❤️ المهندسة رزان — الجمعة 27/11/2026 الساعة 3 عصراً',
+      text: 'بسم الله الرحمن الرحيم ✨ نتشرف بدعوتكم لحضور عقد قران نجليهما: المهندس إبراهيم ❤️ المهندسة رزان — الجمعة 27/11/2026 الساعة 3 عصراً — العنوان: الوسطى، قرية المصدر، شارع صلاح الدين، خلف محطة بهلول',
       url: window.location.href
     };
 
